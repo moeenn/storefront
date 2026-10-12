@@ -1,0 +1,11 @@
+[project]
+name = "storefront"
+version = "1.0.0"
+requires-python = ">=3.13"
+dependencies = [
+    "pydantic>=2.14.1",
+    "python-ulid>=4.0.1",
+]
+
+[project.optional-dependencies]
+dev = []
