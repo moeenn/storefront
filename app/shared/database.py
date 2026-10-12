@@ -1,5 +1,7 @@
 import sqlite3
 from datetime import date, datetime, timedelta, timezone
+from typing import Final
+from zoneinfo import ZoneInfo
 
 from ulid import ULID
 
@@ -34,3 +36,14 @@ def id() -> str:
 def now() -> datetime:
     local_tz = timezone(timedelta(hours=5))
     return datetime.now(local_tz)
+
+
+def dbtimestamp_parse(raw: str) -> datetime:
+    TIMESTAMP_FORMAT: Final = "%Y-%m-%d %H:%M:%S"
+    return datetime.strptime(raw, TIMESTAMP_FORMAT).replace(tzinfo=ZoneInfo("UTC"))
+
+
+def dbtimestamp_optional_parse(raw: str | None) -> datetime | None:
+    if raw is None:
+        return None
+    return dbtimestamp_parse(raw)

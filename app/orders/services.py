@@ -1,4 +1,4 @@
-from app.repos import OrderItemsRepo, OrdersRepo
+from .repo import OrderItemsRepo, OrdersRepo
 
 
 class OrdersService:
